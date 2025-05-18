@@ -6,7 +6,8 @@ Nosso grupo ira desenvolver um Banco de Dados para um supermercado
 ## Tabelas e seus campos
 
 <details>
-
+![Mapa das Tabelas](imagens/mapa.png)
+<details>
 <details>
 <summary>Categoria_Produto</summary>
 
@@ -145,6 +146,7 @@ Nosso grupo ira desenvolver um Banco de Dados para um supermercado
 - promo_fim
 - promo_prod_id 
 
+</details>
 </details>
 </details>
 
