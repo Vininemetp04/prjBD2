@@ -40,6 +40,7 @@ Nosso grupo ira desenvolver um Banco de Dados para um supermercado
 - vw_Total_Itens_Por_Compra
 - vw_Compra_Detalhada
 - vw_Promocao_Ativa
+- TempoEmEstoque
 
 ## Triggers
 
