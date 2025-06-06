@@ -7,8 +7,10 @@ Nosso grupo ira desenvolver um Banco de Dados para um supermercado
 
 <details>
 <summary>Mapa das Tabelas</summary> 
+
 ![Mapa das Tabelas](imagens/mapa.png)
 </details>
+<br>
 
 - Categoria_Produto
 - Fornecedor
