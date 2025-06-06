@@ -158,3 +158,27 @@ SELECT
 	COUNT(p.pag_id) AS "Vezes_Usado"
 FROM Pagamento p 
 GROUP BY p.pag_metodo;
+
+CREATE VIEW vw_Funcionarios_Ativos_Por_Setor AS
+SELECT 
+	fs.NomeSetor,
+	COUNT(fs.FuncionarioID) AS "TotalFuncionarios"
+FROM vw_Funcionario_Setor_Historico fs
+GROUP BY fs.NomeSetor; 
+
+CREATE VIEW vw_Produtos_Mais_Vendidos_Por_Periodo AS
+SELECT
+    p.prod_id AS ProdutoID,
+    p.prod_nome AS NomeProduto,
+    cp.catp_nome AS CategoriaProduto,
+    v.venda_data AS DataVenda,
+    SUM(iv.itemv_qtd) AS QuantidadeTotalVendida,
+    SUM(iv.itemv_qtd * iv.itemv_preco_unit) AS ValorTotalVendido
+FROM Item_Venda iv
+JOIN Produto p ON iv.prod_id = p.prod_id
+JOIN Categoria_Produto cp ON p.catp_id = cp.catp_id
+JOIN Venda v ON iv.venda_id = v.venda_id
+GROUP BY
+    p.prod_id
+ORDER BY
+    v.venda_data ASC, QuantidadeTotalVendida DESC;
