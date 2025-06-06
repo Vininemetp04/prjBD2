@@ -89,9 +89,12 @@ SELECT
   p.prod_id           AS ProdutoID,
   p.prod_nome         AS NomeProduto,
   iv.itemv_qtd        AS Quantidade,
-  iv.itemv_preco_unit AS PrecoUnitario
+  iv.itemv_preco_unit AS PrecoUnitario,
+  (iv.itemv_qtd * iv.itemv_preco_unit) AS "Total",
+  v.venda_data AS "Data_Venda"
 FROM Item_Venda iv
-JOIN Produto p ON iv.prod_id = p.prod_id;
+JOIN Produto p ON iv.prod_id = p.prod_id
+JOIN Venda v ON iv.venda_id = v.venda_id;
 
 --View de Total de Itens por Compra
 
@@ -135,3 +138,23 @@ SELECT
 FROM Promocao pr
 JOIN Produto p ON pr.prod_id = p.prod_id
 WHERE DATE('now') BETWEEN pr.promo_inicio AND pr.promo_fim;
+
+CREATE VIEW TempoEmEstoque AS
+SELECT 
+	p.prod_id AS "ID_Produto",
+	p.prod_nome AS "Nome_Produto",
+	p.prod_qtd_estoque AS "Quantidade_em_Estoque",
+	c.comp_data AS "Ultima_Compra",
+	JULIANDAY(CURRENT_DATE) - JULIANDAY(c.comp_data) AS "Dias_em_Estoque"
+FROM Produto p 
+JOIN Item_Compra ic ON ic.prod_id = p.prod_id
+JOIN Compra c ON c.comp_id = ic.comp_id
+ORDER BY Dias_em_Estoque DESC
+LIMIT 10;
+
+CREATE VIEW MetodoPag AS
+SELECT 
+	p.pag_metodo AS "Metodo",
+	COUNT(p.pag_id) AS "Vezes_Usado"
+FROM Pagamento p 
+GROUP BY p.pag_metodo;
