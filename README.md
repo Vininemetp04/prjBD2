@@ -41,6 +41,9 @@ Nosso grupo ira desenvolver um Banco de Dados para um supermercado
 - vw_Compra_Detalhada
 - vw_Promocao_Ativa
 - TempoEmEstoque
+- MetodoPag
+- vw_Funcionarios_Ativos_Por_Setor
+- vw_Produtos_Mais_Vendidos_Por_Periodo
 
 ## Triggers
 
